@@ -72,7 +72,7 @@ export class RecipeEditComponent implements OnInit {
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
-      if(recipe['description']) {
+      // if(recipe['description']) {
         for(let ingredient of recipe.ingredients ) {
           recipeIngredients.push(
             new FormGroup({
@@ -83,8 +83,9 @@ export class RecipeEditComponent implements OnInit {
               ])
             })
           )
+          console.log(ingredient)
         }
-      }
+      // }
     }
 
     this.recipeForm = new FormGroup({
