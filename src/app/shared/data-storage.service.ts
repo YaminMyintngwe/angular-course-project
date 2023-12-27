@@ -9,6 +9,9 @@ import { AuthService } from "../auth/auth.service";
   providedIn : 'root'
 })
 export class DataStorageService {
+  // name : string | null = null;
+  // car : {color : string | null} = {color: null};
+
   constructor(private http : HttpClient, private recipeService : RecipeService, private authService : AuthService) {}
 
   storeRecipies() {
@@ -20,24 +23,25 @@ export class DataStorageService {
   }
 
   fetchRecipies() {
-    return this.authService.user.pipe(take(1), exhaustMap(user => {
-      return this.http.get<Recipe[]>('https://ng-course-recipe-book-5cb66-default-rtdb.firebaseio.com/recipes.json',
-      {
-        params : new HttpParams().set('auth', user.token)
-      }
-      );
-    }),
-    map(recipes => {
-      return recipes.map(recipe => {
-        return {
-          ...recipe,
-          ingredients : recipe.ingredients ? recipe.ingredients : []
-        }
-      })
-    }),
-    tap(recipes => {
-      this.recipeService.setRecipes(recipes)
-    }));
+    // console.log("Testing Name", this.name ?? "Mg Mg");
+    // console.log("Testing car", this.car?.color);
 
+    // return this.authService.user.pipe(take(1), exhaustMap(user => {
+      return this.http.get<Recipe[]>('https://ng-course-recipe-book-5cb66-default-rtdb.firebaseio.com/recipes.json'
+      // {
+      //   params : new HttpParams().set('auth', user?.token ?? "")
+      // }
+      ).pipe(
+        map(recipes => {
+          return recipes.map(recipe => {
+            return {
+              ...recipe,
+              ingredients : recipe.ingredients ? recipe.ingredients : []
+            }
+          })
+        }),
+        tap(recipes => {
+          this.recipeService.setRecipes(recipes)
+        }));
   }
 }
