@@ -17,7 +17,7 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item" *ngIf="isAuthenticated">
-              <a class="nav-link" style="cursor: pointer">Logout</a>
+              <a class="nav-link" style="cursor: pointer" (click)="onLogout()">Logout</a>
             </li>
             <li class="nav-item dropdown" *ngIf="isAuthenticated">
                 <a class="nav-link dropdown-toggle" style="cursor: pointer" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Manage </a>
