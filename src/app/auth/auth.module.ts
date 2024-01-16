@@ -5,8 +5,9 @@ import { RouterModule } from "@angular/router";
 import { AuthComponent } from "./auth.component";
 import { SharedModule } from "../shared/shared.module";
 
+
 @NgModule({
-    providers: [
+    declarations:[
         AuthComponent
     ],
     imports: [
@@ -16,7 +17,9 @@ import { SharedModule } from "../shared/shared.module";
             { path: 'auth', component: AuthComponent}
         ]),
         SharedModule
+        
     ]
+
 })
 
 export class AuthModule {
